@@ -8,6 +8,7 @@ Created on Sat Apr 27 10:21:15 2019
 import pandas as pd
 from sklearn import model_selection
 from sklearn.linear_model import LinearRegression
+import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
 df = pd.read_csv('F:\python 372\Py_ex\data.csv')
@@ -15,7 +16,10 @@ x=df['quantity']
 y1=df['COD']
 df = pd.DataFrame(x)
 #df.columns = df.feature_names
-train_x, test_x, train_y1, test_y1 = model_selection.train_test_split(x, y1)
+#analyzing the data with some visualization using seaborn library.
+sns.Countplot(x = "zn" ,df) #gives the histogram with the values can do similar to others by just changing the label
+df.info()#give you the full detailed info about the data that you are going to use.
+train_x, test_x, train_y1, test_y1 = model_selection.train_test_split(x, y1, testsize = 0.3, random_state = 1) # we are splitting the data training(70%) and test into 30 for precise result
 train_x = train_x.values.reshape(-1,1)
 test_x = test_x.values.reshape(-1,1)
 alg = LinearRegression()
